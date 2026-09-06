@@ -1,0 +1,61 @@
+﻿
+@model mvc.Movie
+
+@{
+    ViewData["Title"] = "Добавить";
+}
+
+
+
+<div class="page-wrapper">
+    <div class="create-card">
+        <div class="header">
+            <h1>Укажите данные новый фильм, сериал или игру</h1>
+        </div>
+
+        <form asp-action="Create">
+
+            <div class="form-group">
+                <label asp-for="Name">Название</label>
+                <input asp-for="Name" class="form-control" placeholder="Название фильма" />
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="director">Режиссёр</label>
+                <input asp-for="director" class="form-control" placeholder="Режиссёр" />
+                <span asp-validation-for="director"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="genre">Жанр</label>
+                <input asp-for="genre" class="form-control" placeholder="Жанр" />
+                <span asp-validation-for="genre"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="poster">Ссылка на постер</label>
+                <input asp-for="poster" class="form-control" placeholder="/img/Photo.jpg" />
+                <span asp-validation-for="poster"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="description">Опис</label>
+                <textarea asp-for="description"
+                          class="form-control"
+                          placeholder="Описание фильма, сериала или игры"></textarea>
+                <span asp-validation-for="description"></span>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Добавить новый фильм, сериал или игру
+            </button>
+
+        </form>
+
+        <a asp-action="Index" class="back-link">
+            <span>←</span> Вернуться к списку фильмов, сериалов и игр
+        </a>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<mvc.Movie> //  вказуємо повне ім’я моделі, оскільки клас Movie знаходиться в просторі імен mvc
+
+<div class="container pt-5">
+    <h2>Список фильмов</h2>
+
+    @if (!Model.Any()) // перевірка на порожній список
+    {
+        <div class="alert alert-info">
+            Список фильмов пустой.
+        </div>
+    } // взагалі, цей коктейль HTML + C# називається Razor, він дозволяє впроваджувати C# код в HTML розмітку
+    else // браузер звісно не розуміє C#, тому цей код буде виконаний на сервері, а в браузер надійде вже готова HTML-розмітка
+    { // процесс перетворення Razor в HTML називається рендерингом, займається ним движок Razor View Engine (частина ASP.NET Core)
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Режиссёр</th>
+                    <th>Жанр</th>
+                    <th>Постер</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model) // @ це рейзор-синтаксис для впровадження C# коду в HTML
+                {
+                    <tr>
+                        <td class="name">@s.Name</td>
+                        <td class="director">@s.director</td>
+                        <td class="genre">@s.genre</td>
+                        <td class="poster"><img src="@s.poster" alt="@s.Name"></td>
+                        <td><span class="description">@s.description</span></td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@s.Id">Подробнее</a>
+                            <a asp-action="Delete" asp-route-id="@s.Id">Удалить</a>
+                            <a asp-action="Edit" asp-route-id="@s.Id">Редактировать</a>
+                        </td>
+                    </tr> <!-- тепер можна і Shared / _Layout.cshtml подивитися :) -->
+                }
+            </tbody>
+        </table>
+    }
+</div>

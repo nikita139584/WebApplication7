@@ -1,0 +1,295 @@
+/* ===========================================================
+   site.css — стили для WebApplication7 (каталог фильмов)
+   Покрывает: _Layout.cshtml, Index.cshtml (.students-table),
+   Create.cshtml (.page-wrapper/.create-card/.form-group/...),
+   Details.cshtml (dl.row), Privacy.cshtml
+   =========================================================== */
+
+:root {
+    --bg: #0f1115;
+    --surface: #1a1d24;
+    --surface-2: #22262f;
+    --border: #2c313c;
+    --text: #e8e9ec;
+    --text-muted: #9aa0ab;
+    --accent: #e0a13d;
+    --accent-hover: #f0b559;
+    --danger: #e05656;
+    --radius: 10px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+    a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+    }
+
+/* ---------- Header / Navbar ---------- */
+header .navbar {
+    background-color: var(--surface) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+header .navbar-brand,
+header .nav-link {
+    color: var(--text) !important;
+}
+
+    header .nav-link:hover {
+        color: var(--accent) !important;
+    }
+
+/* ---------- Footer ---------- */
+footer.footer {
+    background-color: var(--surface);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+    footer.footer a {
+        color: var(--accent);
+    }
+
+/* ===========================================================
+   Index.cshtml — список фильмов
+   =========================================================== */
+.container h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--surface);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+    .students-table thead th {
+        background-color: var(--surface-2);
+        color: var(--accent);
+        text-align: left;
+        padding: 0.85rem 1rem;
+        font-weight: 600;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .students-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background-color 0.15s ease;
+    }
+
+        .students-table tbody tr:hover {
+            background-color: var(--surface-2);
+        }
+
+        .students-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+    .students-table td {
+        padding: 0.75rem 1rem;
+        vertical-align: middle;
+    }
+
+        .students-table td.name {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .students-table td.director,
+        .students-table td.genre {
+            color: var(--text-muted);
+        }
+
+        .students-table td.poster img {
+            width: 60px;
+            height: 84px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+    .students-table .description {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        max-width: 320px;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .students-table a {
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+.alert-info {
+    background-color: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: var(--radius);
+}
+
+/* ===========================================================
+   Create.cshtml — форма добавления фильма
+   =========================================================== */
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem 1rem;
+}
+
+.create-card {
+    width: 100%;
+    max-width: 560px;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.25rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+    .create-card .header h1 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: var(--text);
+    }
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .form-group .form-control {
+        width: 100%;
+        background-color: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.6rem 0.85rem;
+        color: var(--text);
+        font-size: 0.95rem;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+        .form-group .form-control::placeholder {
+            color: #6b7280;
+        }
+
+        .form-group .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(224, 161, 61, 0.2);
+        }
+
+    .form-group textarea.form-control {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .form-group span[asp-validation-for],
+    .form-group .field-validation-error {
+        display: block;
+        margin-top: 0.35rem;
+        color: var(--danger);
+        font-size: 0.82rem;
+    }
+
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: var(--accent);
+    color: #14161b;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+    .btn-submit:hover {
+        background-color: var(--accent-hover);
+    }
+
+    .btn-submit:active {
+        transform: translateY(1px);
+    }
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+    .back-link:hover {
+        color: var(--accent);
+    }
+
+    .back-link span {
+        font-size: 1.05rem;
+    }
+
+/* ===========================================================
+   Details.cshtml — карточка деталей фильма
+   =========================================================== */
+dl.row {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 0;
+}
+
+    dl.row dt {
+        color: var(--text-muted);
+        font-weight: 600;
+        padding-top: 0.5rem;
+    }
+
+    dl.row dd {
+        color: var(--text);
+        padding-top: 0.5rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 0.25rem;
+    }
+
+        dl.row dd:last-of-type {
+            border-bottom: none;
+        }
+
+/* ===========================================================
+   Общие элементы (Privacy и др.)
+   =========================================================== */
+h1, h4 {
+    color: var(--text);
+}
+
+hr {
+    border-color: var(--border);
+}
